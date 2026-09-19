@@ -1,0 +1,325 @@
+% !TeX program = xelatex
+% vim: set textwidth=120:
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[english]{babel}
+\usepackage{calc}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{fontspec}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{xcolor}
+
+\newgeometry{left=15mm,right=15mm,top=15mm,bottom=15mm}
+
+\newlength{\cvcolumngapwidth}
+\setlength{\cvcolumngapwidth}{3.5mm}
+\newlength{\cvleftcolumnwidth}
+\setlength{\cvleftcolumnwidth}{44.5mm}
+\newlength{\cvrightcolumnwidth}
+\setlength{\cvrightcolumnwidth}{\textwidth-\cvleftcolumnwidth-\cvcolumngapwidth}
+\setlength{\parindent}{0mm}
+
+\defaultfontfeatures{Ligatures=TeX}
+\newfontfamily{\cvnamefont}{Roboto Medium}
+\newfontfamily{\cvsectionfont}{Roboto Medium}
+\newfontfamily{\cvtitlefont}{Roboto Regular}
+\newfontfamily{\cvdurationfont}{Roboto Light Italic}
+\newfontfamily{\cvheadingfont}{Roboto Regular}
+\setmainfont{Roboto Light}
+
+\definecolor{cvnamecolor}{HTML}{000000}
+\definecolor{cvsectioncolor}{HTML}{000000}
+\definecolor{cvtitlecolor}{HTML}{000000}
+\definecolor{cvdurationcolor}{HTML}{000000}
+\definecolor{cvheadingcolor}{HTML}{000000}
+\definecolor{cvmaincolor}{HTML}{000000}
+\definecolor{cvrulecolor}{HTML}{000000}
+\color{cvmaincolor}
+
+\newcommand{\cvnamestyle}[1]{{\Large\cvnamefont\textcolor{cvnamecolor}{#1}}}
+\newcommand{\cvsectionstyle}[1]{{\normalsize\cvsectionfont\textcolor{cvsectioncolor}{#1}}}
+\newcommand{\cvtitlestyle}[1]{{\large\cvtitlefont\textcolor{cvtitlecolor}{#1}}}
+\newcommand{\cvdurationstyle}[1]{{\small\cvdurationfont\textcolor{cvdurationcolor}{#1}}}
+\newcommand{\cvheadingstyle}[1]{{\normalsize\cvheadingfont\textcolor{cvheadingcolor}{#1}}}
+
+\newlength{\cvafteritemskipamount}
+\setlength{\cvafteritemskipamount}{5mm plus 1.25mm minus 1.25mm}
+\newlength{\cvaftersectionskipamount}
+\setlength{\cvaftersectionskipamount}{2mm plus 0.5mm minus 0.5mm}
+\newlength{\cvbetweensectionandheadingextraskipamount}
+\setlength{\cvbetweensectionandheadingextraskipamount}{1mm plus 0.25mm minus 0.25mm}
+\newlength{\cvafternameskipamount}
+\setlength{\cvafternameskipamount}{3mm plus 0.75mm minus 0.75mm}
+\newlength{\cvafterpersonalinfolineskipamount}
+\setlength{\cvafterpersonalinfolineskipamount}{2mm plus 0.5mm minus 0.5mm}
+\newlength{\cvaftertitleskipamount}
+\setlength{\cvaftertitleskipamount}{1mm plus 0.25mm minus 0.25mm}
+\newlength{\cvparskip}
+\setlength{\cvparskip}{0.5mm plus 0.125mm minus 0.125mm}
+\setlist{parsep=0mm,topsep=0mm,partopsep=0mm,itemsep=\cvparskip}
+
+\newcommand{\cvpersonalinfo}[2]{
+    \begin{minipage}[t]{\cvleftcolumnwidth}
+        \vspace{0mm}
+        \raggedleft #1
+    \end{minipage}%
+    \hspace{\cvcolumngapwidth}%
+    \begin{minipage}[t]{\cvrightcolumnwidth}
+        \vspace{0mm}
+        #2
+    \end{minipage}
+    \vspace{\cvafteritemskipamount}
+}
+
+\newcommand{\cvname}[1]{
+    \cvnamestyle{#1}
+    \vspace{\cvafternameskipamount}
+}
+
+\newcommand{\cvpersonalinfolinewithicon}[3]{
+    \raisebox{.5\fontcharht\font`E-.5\height}{\includegraphics[#1]{#2}}
+    #3
+    \vspace{\cvafterpersonalinfolineskipamount}
+}
+
+\newcommand{\cvsection}[1]{
+    \begin{minipage}[t]{\cvleftcolumnwidth}
+        \raggedleft\cvsectionstyle{#1}
+    \end{minipage}%
+    \hspace{\cvcolumngapwidth}%
+    \begin{minipage}[t]{\cvrightcolumnwidth}
+        \textcolor{cvrulecolor}{\rule{\cvrightcolumnwidth}{0.3mm}}
+    \end{minipage}
+    \vspace{\cvaftersectionskipamount}
+}
+
+\newcommand{\cvitem}[2]{
+    \begin{minipage}[t]{\cvleftcolumnwidth}
+        \raggedleft #1
+    \end{minipage}%
+    \hspace{\cvcolumngapwidth}%
+    \begin{minipage}[t]{\cvrightcolumnwidth}
+        \setlength{\parskip}{\cvparskip} #2
+    \end{minipage}
+    \vspace{\cvafteritemskipamount}
+}
+
+\newcommand{\cvtitle}[1]{
+    \cvtitlestyle{#1}
+    \vspace{\cvaftertitleskipamount}
+    \vspace{-\cvparskip}
+}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\cvpersonalinfo{
+    % Optional: Add a photo here later.
+}{
+    \cvname{Christian Komposch}
+
+    Echinger Str. 6b\\
+    85386 Eching
+    \vspace{\cvafterpersonalinfolineskipamount}
+
+    +49-173-8482319
+    \vspace{\cvafterpersonalinfolineskipamount}
+
+    christian@komposch.de
+}
+
+\cvsection{PROFESSIONAL EXPERIENCE}
+
+\cvitem{
+    \cvdurationstyle{2026 -- present}
+}{
+    \cvtitle{Software Product Manager -- DC-DC Converter and OBC}
+
+    BMW AG
+
+    \begin{itemize}[leftmargin=*]
+        \item Overall functional responsibility for the software roadmaps of the DC-DC converter and OBC control units
+        \item Prioritization and management of the product backlog in close coordination with development, quality and customers
+    \end{itemize}
+}
+
+\cvitem{
+    \cvdurationstyle{2021 -- 2026}
+}{
+    \cvtitle{Software Product Manager -- Battery Management System}
+
+    BMW AG
+
+    \begin{itemize}[leftmargin=*]
+        \item Overall functional responsibility for the software roadmap of the battery management system
+        \item Prioritization and management of the product backlog in close coordination with development, quality and customers
+        \item 2025: Successful start of production for the New Class (BMW iX3, NA5) as an in-house development project
+        \item % TODO: Add specific figure, e.g. team size, number of suppliers/stakeholders
+              Functional leadership of a team of [number] developers/stakeholders
+    \end{itemize}
+}
+
+\cvitem{
+    \cvdurationstyle{2016 -- 2021}
+}{
+    \cvtitle{Software Project Manager -- Battery Management System}
+
+    BMW AG
+
+    \begin{itemize}[leftmargin=*]
+        \item Functional and organizational leadership of the software development team for the battery management system
+        \item Responsibility for schedule, budget and quality targets throughout the project lifecycle
+        \item Management and coordination of the involved suppliers
+        \item 2021: Successful start of production for the BMW iX (I20) -- on schedule and meeting the required quality standards
+        \item % TODO: Add specific figure, e.g. team size, budget volume
+              Responsibility for a team of [number] people and a budget of [amount]
+    \end{itemize}
+}
+
+\cvitem{
+    \cvdurationstyle{01/2013 -- 2016}
+}{
+    \cvtitle{Embedded Systems / AUTOSAR Software Integrator -- Battery Management System}
+
+    BMW AG
+
+    \begin{itemize}[leftmargin=*]
+        \item Integration of software for the battery management system control unit (Embedded Systems / AUTOSAR)
+        \item Coordination of interfaces between development teams to ensure system consistency
+        \item Work in the field of electric drives
+        \item 2015: Start of production for the BMW X5 (G05)
+        \item 2013: Start of production for the BMW i3 (I01)
+    \end{itemize}
+}
+
+\cvitem{
+    \cvdurationstyle{04/2012 -- 01/2013}
+}{
+    \cvtitle{Embedded Systems / AUTOSAR Software Integrator -- Hybrid Components}
+
+    BMW Peugeot Citroën Electrification\\
+    \textit{(joint venture of BMW AG and PSA Peugeot Citroën)}
+
+    \begin{itemize}[leftmargin=*]
+        \item Integration of software for an Embedded Systems / AUTOSAR control unit in the field of hybrid drives
+        \item Coordination of interfaces between development teams to ensure system consistency
+        \item Seamless transition of the role back to BMW AG after the joint venture was dissolved in early 2013
+    \end{itemize}
+}
+
+\cvitem{
+    \cvdurationstyle{09/2009 -- 04/2012}
+}{
+    \cvtitle{Consultant -- Control Unit Development / Embedded Systems}
+
+    Altran Deutschland, on behalf of BMW AG
+
+    \begin{itemize}[leftmargin=*]
+        \item Development and maintenance of a toolchain for automatic code generation using MATLAB/Simulink
+        \item Implementation of automation solutions to increase development efficiency
+        \item Development for a powertrain control unit
+        \item Transition to a permanent position at BMW AG from 2013 after successfully working as a consultant
+    \end{itemize}
+}
+
+\cvitem{
+    \cvdurationstyle{01/2007 -- 09/2009}
+}{
+    \cvtitle{IT Freelancer / IT Consultant}
+
+    Self-employed under my own name
+
+    \begin{itemize}[leftmargin=*]
+        \item Consulting and support for small and medium-sized companies on IT matters
+        \item Technical work in the areas of servers, networks, IT applications, databases and application development
+    \end{itemize}
+}
+
+\cvsection{EDUCATION}
+
+\cvitem{
+    \cvdurationstyle{2004 -- 2009}
+}{
+    \cvtitle{Diploma in Software Engineering (University of Applied Sciences)}
+
+    Esslingen University
+
+    \begin{itemize}[leftmargin=*]
+        \item Final grade: 2.3
+        \item Diploma thesis at IT-Designers GmbH, Esslingen, in cooperation with Daimler AG, Sindelfingen: early specialization in AUTOSAR -- commissioning of a pre-production AUTOSAR stack by Vector Informatik and development of a prototype application following the AUTOSAR methodology (DaVinci toolchain)
+        \item Diploma thesis grade: 1.3
+    \end{itemize}
+}
+
+\cvitem{
+    \cvdurationstyle{2003 -- 2004}
+}{
+    \cvtitle{Advanced Technical College Entrance Qualification}
+
+    Friedrich-Ebert-Schule, Esslingen am Neckar
+
+    \begin{itemize}[leftmargin=*]
+        \item Final grade: 2.2
+    \end{itemize}
+}
+
+\cvitem{
+    \cvdurationstyle{2000 -- 2003}
+}{
+    \cvtitle{Communications Electronics Technician}
+
+    Specialization in Information Technology
+
+    Robert Bosch GmbH, Wernau
+
+    \begin{itemize}[leftmargin=*]
+        \item Final grade: 1.8
+    \end{itemize}
+}
+
+\cvsection{SKILLS}
+
+\vspace{\cvbetweensectionandheadingextraskipamount}
+
+\cvitem{
+    \cvheadingstyle{Languages}
+}{
+    German -- native speaker
+
+    English -- fluent / professional working proficiency
+}
+
+\cvitem{
+    \cvheadingstyle{IT Skills}
+}{
+    Development tools -- GitHub, Zuul, Bazel, MATLAB/Simulink, MagicDraw
+
+    Requirements / process management -- Jira, Confluence, DOORS, Codebeamer
+
+    Methods \& standards -- software development, AUTOSAR, ASPICE, ISO 26262
+}
+
+\cvitem{
+    \cvheadingstyle{Additional qualifications}
+}{
+    Qualified professional for high-voltage systems in motor vehicles according to DGUV Information 209-093
+
+    Driving licence, category B
+}
+
+\cvsection{ADDITIONAL INFORMATION}
+
+\vspace{\cvbetweensectionandheadingextraskipamount}
+
+\cvitem{
+    \cvheadingstyle{Interests}
+}{
+    Cycling, sports, home networking / homelab projects
+}
+
+\end{document}
